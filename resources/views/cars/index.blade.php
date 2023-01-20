@@ -4,9 +4,16 @@
     Homepage
 @endsection
 
+
+
 @section('main-content')
     <section class="container">
-        <h1>Homepage</h1>
+        <section class="d-flex justify-content-between align-items-center">
+            <h1>Homepage</h1>
+            <a href="{{ route('cars.create') }}">
+                <button class="btn btn-warning text-white">Add new car</button>
+            </a>
+        </section>
     
         <table class="table table-bordered text-white">
             <thead>
@@ -30,6 +37,9 @@
                         <td>
                             <a href="{{ route('cars.show', $car->id) }}">
                                 <button class="btn btn-primary">More details</button>
+                            </a>
+                            <a href="{{ route('cars.edit', $car->id) }}">
+                                <button class="btn btn-light">Edit</button>
                             </a>
                         </td>
                     </tr>

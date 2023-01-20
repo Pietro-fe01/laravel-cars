@@ -5,7 +5,7 @@
 @endsection
 
 @section('main-content')
-    <section>
+    <section class="container">
         <h1>Show page</h1>
 
         <table class="table table-bordered text-white">
@@ -28,5 +28,7 @@
                 </tr>
             </tbody>
         </table>
+
+        <a href="{{ route('cars.index') }}" class="btn btn-primary">Torna alla homepage</a>
     </section>
 @endsection

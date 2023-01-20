@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Car;
 use Illuminate\Http\Request;
 
+use function GuzzleHttp\Promise\all;
+
 class CarController extends Controller
 {
     /**
@@ -27,7 +29,7 @@ class CarController extends Controller
      */
     public function create()
     {
-        //
+        return view('cars.create');
     }
 
     /**
@@ -38,7 +40,12 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $new_car = new Car();
+            $new_car->fill($data);
+        $new_car->save();
+
+        return redirect()->route('cars.show', $new_car->id);
     }
 
     /**
@@ -58,9 +65,9 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Car $car)
     {
-        //
+        return view('cars.edit', compact('car'));
     }
 
     /**
@@ -70,9 +77,13 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Car $car)
     {
-        //
+        $data = $request->all();
+
+        $car->update($data);
+
+        return redirect()->route('cars.index');
     }
 
     /**

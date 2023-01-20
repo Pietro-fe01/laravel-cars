@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('make', 150);
             $table->string('model', 150);
-            $table->year('year');
+            $table->unsignedBigInteger('year');
             $table->string('color', 40);
             $table->timestamps();
         });
