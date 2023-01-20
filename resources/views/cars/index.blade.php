@@ -34,13 +34,19 @@
                         <td>{{ $car->model }}</td>
                         <td>{{ $car->year }}</td>
                         <td>{{ $car->color }}</td>
-                        <td>
+                        <td class="d-flex justify-content-around">
                             <a href="{{ route('cars.show', $car->id) }}">
                                 <button class="btn btn-primary">More details</button>
                             </a>
                             <a href="{{ route('cars.edit', $car->id) }}">
                                 <button class="btn btn-light">Edit</button>
                             </a>
+                            <form action="{{ route('cars.destroy', $car->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
